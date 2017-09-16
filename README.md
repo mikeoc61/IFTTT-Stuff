@@ -3,7 +3,7 @@
 These programs were created to investigate integration of the AWS IoT Button and
 the IFTTT cloud service popularly used for home automation projects.
 
-AWS_Button_Sim - Imitates and AWS Button Press Event
+AWS_Button_Sim - Imitates an AWS Button Press Event
 
 AWS_IoT_Lambda - Processes an actual AWS Button Press
 
