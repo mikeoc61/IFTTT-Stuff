@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #####
 #
 # Python2 program to call IFTTT to trigger an Applet
@@ -5,19 +7,30 @@
 #
 # Use this code to directly invoke IFTTT Applets and simulate Button Presses
 #
-# Author: Michael O'Connor - 8/15/17
+# Requires that environment variables MAKER_KEY BUTTON_SN be defined and set
 #
 #####
 
+__author__      = "Michael E. O'Connor"
+__copyright__   = "Copyright 2018"
+
+import os
+import sys
 import time
 import urllib2
 
-# Specify IFTTT supplied key from Webhooks
+# Specify IFTTT supplied key from Webhooks defined as environment variable MAKER_KEY
 # Obtain key from: https://ifttt.com/services/maker_webhooks/settings
 
-maker_key = 'XXXXXXXXXXXXXXXXXXX'
+try:  
+    maker_key = os.environ["MAKER_KEY"]
+except KeyError: 
+   print "Please set the environment variable MAKER_KEY"
+   sys.exit(1)
 
-#  Provide event dictionary to simulate AWS IoT Button
+print ('MAKER_KEY is set to: ' + maker_key)
+
+# Define event dictionary to simulate AWS IoT Button
 #   batteryVoltage is unused
 #   serialNumber corresponds to a specific IoT Device (and Webhooks applet name)
 #   clickType corresponds to type of button press (and Webhooks applet name)
@@ -25,8 +38,19 @@ maker_key = 'XXXXXXXXXXXXXXXXXXX'
 event = {
     "batteryVoltage": "1707mV",
     "serialNumber": "<UNIQUE SN of AWS Iot Button>",
-    "clickType": "DOUBLE"
+    "clickType": "<SINGLE, DOUBLE or LONG>"
 }
+
+# Specify IFTTT event name as defined by environment variable BUTTON_SN
+# This will be used to identify the IFTTT Webhooks Applet to run
+
+try:
+    event['serialNumber'] = os.environ["BUTTON_SN"]
+except KeyError:
+   print "Please set the environment variable BUTTON_SN to specify IFTTT Applet"
+   sys.exit(1)
+
+print ('BUTTON_SN is set to: ' + event['serialNumber'])
 
 # Function to emulate AWS IFTTT Lambda function invoked when IoT button is pressed
 # Function forms the required URL based on button S/N and clickType
