@@ -9,6 +9,8 @@ AWS_IoT_Lambda - Processes an actual AWS Button Press
 
 Call-IFTTT - Very similar to AWS_Button_Sim
 
+LIFX.py - Specifically called IFTTT to invoke LIFX specific Webhooks
+
 ## AWS IoT Button
 
 Copied from: https://aws.amazon.com/iotbutton/
