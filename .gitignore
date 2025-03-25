@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+### OSX.gitignore
+
+.DS_Store
+.AppleDouble
+.LSOverride
+*.icloud
+
 # Distribution / packaging
 .Python
 env/

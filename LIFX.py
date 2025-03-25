@@ -29,7 +29,7 @@ except KeyError:
 
 print ('MAKER_KEY is set to: ' + maker_key)
 
-# Specify IFTTT event name as defined by environment variable BUTTON_SN
+# Specify IFTTT event name as defined by environment variable LIFX_APPLET
 # This will be used to identify the IFTTT Webhooks Applet to run
 
 try:
